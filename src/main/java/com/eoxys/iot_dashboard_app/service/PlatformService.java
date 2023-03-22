@@ -1,89 +1,48 @@
 package com.eoxys.iot_dashboard_app.service;
 
-import java.security.Key;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
+import java.util.List;
+import java.util.Optional;
 
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.io.Decoders;
-import io.jsonwebtoken.security.Keys;
+import com.eoxys.iot_dashboard_app.model.PlatformInfo;
+import com.eoxys.iot_dashboard_app.repository.PlatformInfoRepository;
 
-@Component
+@Service
 public class PlatformService {
 	
-	public static final String SECRET = "5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437";
+	@Autowired
+    private PlatformInfoRepository piRepository;
 
-
-    public String extractUsername(String token) {
-        return extractClaim(token, Claims::getSubject);
-    }
-
-    public Date extractExpiration(String token) {
-        return extractClaim(token, Claims::getExpiration);
-    }
-
-    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
-        final Claims claims = extractAllClaims(token);
-        return claimsResolver.apply(claims);
-    }
-
-    private Claims extractAllClaims(String token) {
-        return Jwts
-                .parserBuilder()
-                .setSigningKey(getSignKey())
-                .build()
-                .parseClaimsJws(token)
-                .getBody();
-    }
-
-    private Boolean isTokenExpired(String token) {
-        return extractExpiration(token).before(new Date());
-    }
-
-    public Boolean validateToken(String token, UserDetails userDetails) {
-        final String username = extractUsername(token);
-        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
-    }
-
-
-    public Map<String, String> generateToken(String userName){
-        Map<String,Object> claims=new HashMap<>();
-        return createToken(claims,userName);
-    }
-
-    private Map<String, String> createToken(Map<String, Object> claims, String userName) {
-        String jwtTok =  Jwts.builder()
-                .setClaims(claims)
-                .setSubject(userName)
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis()+1000*60*30))
-                .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
-        
-        
-        Long xprtime = new Date().getTime()+1000*60*30;
-        xprtime = xprtime/1000;
-        String xpr = String.valueOf(xprtime);
-        
-        
-        HashMap<String, String> map = new HashMap<>();
-        map.put("tid", "35389");
-        map.put("xpr", xpr);
-        map.put("tkt", "Bearer");
-        map.put("tkn", jwtTok);
-        
-        return map;
-    }
-
-	private Key getSignKey() {
-        byte[] keyBytes= Decoders.BASE64.decode(SECRET);
-        return Keys.hmacShaKeyFor(keyBytes);
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    
+    public Long PlatformCount() {
+		return piRepository.count();
+	}
+	
+	
+	public List<PlatformInfo> AllPlatform(){
+		return piRepository.findAll();
+	}
+	
+	
+	public PlatformInfo GetSinglePlatform(Integer id) {
+		Optional<PlatformInfo> users = piRepository.findById(id);
+		if(users.isPresent()) {
+			return users.get();
+			
+		}
+		
+		throw new RuntimeException("Platform is not present for this id ==>"+id);
+	}
+	
+	public String addUser(PlatformInfo userInfo) {
+        userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
+        piRepository.save(userInfo);
+        return "user added to system ";
     }
 
 }

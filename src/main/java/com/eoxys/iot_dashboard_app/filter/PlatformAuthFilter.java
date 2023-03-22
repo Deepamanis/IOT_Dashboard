@@ -10,6 +10,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.eoxys.iot_dashboard_app.security_config.JwtConfig;
 import com.eoxys.iot_dashboard_app.security_config.PlatformDetailsService;
 import com.eoxys.iot_dashboard_app.service.PlatformService;
 
@@ -23,7 +24,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public class PlatformAuthFilter extends OncePerRequestFilter {
 	
 	@Autowired
-    private PlatformService jwtService;
+    private JwtConfig jwtService;
 	
 	@Autowired
     private PlatformDetailsService userDetailsService;
