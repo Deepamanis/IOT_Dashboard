@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.eoxys.iot_dashboard_app.dto.PlatformAuthRequest;
 import com.eoxys.iot_dashboard_app.model.Organization;
 import com.eoxys.iot_dashboard_app.model.PlatformInfo;
+import com.eoxys.iot_dashboard_app.security_config.JwtConfig;
 import com.eoxys.iot_dashboard_app.service.PlatformService;
 import com.eoxys.iot_dashboard_app.service.UserService;
 
@@ -26,9 +27,9 @@ import com.eoxys.iot_dashboard_app.service.UserService;
 public class PlatformController {
 	
 	@Autowired
-    private UserService service;
+    private PlatformService pService;
     @Autowired
-    private PlatformService jwtService;
+    private JwtConfig jwtService;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -37,26 +38,26 @@ public class PlatformController {
     @GetMapping("/platforms")
 	public ResponseEntity<List<PlatformInfo>> GetOrgaization(){
 		System.out.println("GetOrgaization");
-		return new ResponseEntity<List<PlatformInfo>>(service.AllPlatform(),HttpStatus.OK);
+		return new ResponseEntity<List<PlatformInfo>>(pService.AllPlatform(),HttpStatus.OK);
 	}
 	
 	@GetMapping("/platformcount")
 	public ResponseEntity<Long> OrgCount(){
 		System.out.println("OrgCount");
-		return new ResponseEntity<Long>(service.PlatformCount(),HttpStatus.OK);
+		return new ResponseEntity<Long>(pService.PlatformCount(),HttpStatus.OK);
 	}
 	
 	@GetMapping("/platforms/{id}")
 	public ResponseEntity<PlatformInfo> GetOrgById(@PathVariable Integer id){
 		System.out.println("GetOrgById ==>"+id);
-		return new ResponseEntity<PlatformInfo>(service.GetSinglePlatform(id),HttpStatus.OK);
+		return new ResponseEntity<PlatformInfo>(pService.GetSinglePlatform(id),HttpStatus.OK);
 	}
     
     
     @PostMapping("/platform")
     public String addNewUser(@RequestBody PlatformInfo userInfo) {
     	System.out.println("User");
-        return service.addUser(userInfo);
+        return pService.addUser(userInfo);
     }
     
     @PostMapping("/authenticate")
