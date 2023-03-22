@@ -1,0 +1,8 @@
+.git
+.gitattributes
+target/
+folder_structure.txt
+logs/
+.settings
+
+.DS_Store
