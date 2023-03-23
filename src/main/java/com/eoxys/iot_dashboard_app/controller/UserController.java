@@ -19,30 +19,30 @@ import com.eoxys.iot_dashboard_app.service.UserService;
 public class UserController {
 	
 	@Autowired
-	private UserService uService;
+	private UserService userService;
 	
 	@GetMapping("/organizations")
 	public ResponseEntity<List<Organization>> GetOrgaization(){
 		System.out.println("GetOrgaization");
-		return new ResponseEntity<List<Organization>>(uService.AllOrganization(),HttpStatus.OK);
+		return new ResponseEntity<List<Organization>>(userService.AllOrganization(),HttpStatus.OK);
 	}
 	
 	@GetMapping("/orgcount")
 	public ResponseEntity<Long> OrgCount(){
 		System.out.println("OrgCount");
-		return new ResponseEntity<Long>(uService.OrganizationCount(),HttpStatus.OK);
+		return new ResponseEntity<Long>(userService.OrganizationCount(),HttpStatus.OK);
 	}
 	
 	@GetMapping("/organizations/{id}")
 	public ResponseEntity<Organization> GetOrgById(@PathVariable Long id){
 		System.out.println("GetOrgById ==>"+id);
-		return new ResponseEntity<Organization>(uService.GetSingleOrganization(id),HttpStatus.OK);
+		return new ResponseEntity<Organization>(userService.GetSingleOrganization(id),HttpStatus.OK);
 	}
 	
 	@PostMapping("/organizations")
 	public ResponseEntity<Organization> SaveOrg(@RequestBody Organization org){
 		System.out.println("SaveOrg data ==>"+org);
-		return new ResponseEntity<Organization>(uService.SaveOrganization(org),HttpStatus.CREATED);
+		return new ResponseEntity<Organization>(userService.SaveOrganization(org),HttpStatus.CREATED);
 	}
 	
 

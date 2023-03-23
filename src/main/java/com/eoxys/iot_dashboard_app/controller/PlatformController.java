@@ -27,7 +27,7 @@ import com.eoxys.iot_dashboard_app.service.UserService;
 public class PlatformController {
 	
 	@Autowired
-    private PlatformService pService;
+    private PlatformService platformService;
     @Autowired
     private JwtConfig jwtService;
 
@@ -36,28 +36,28 @@ public class PlatformController {
     
     
     @GetMapping("/platforms")
-	public ResponseEntity<List<PlatformInfo>> GetOrgaization(){
-		System.out.println("GetOrgaization");
-		return new ResponseEntity<List<PlatformInfo>>(pService.AllPlatform(),HttpStatus.OK);
+	public ResponseEntity<List<PlatformInfo>> GetPlatform(){
+		System.out.println("GetPlatform");
+		return new ResponseEntity<List<PlatformInfo>>(platformService.AllPlatform(),HttpStatus.OK);
 	}
 	
 	@GetMapping("/platformcount")
-	public ResponseEntity<Long> OrgCount(){
-		System.out.println("OrgCount");
-		return new ResponseEntity<Long>(pService.PlatformCount(),HttpStatus.OK);
+	public ResponseEntity<Long> PlatformCount(){
+		System.out.println("PlatformCount");
+		return new ResponseEntity<Long>(platformService.PlatformCount(),HttpStatus.OK);
 	}
 	
 	@GetMapping("/platforms/{id}")
-	public ResponseEntity<PlatformInfo> GetOrgById(@PathVariable Integer id){
-		System.out.println("GetOrgById ==>"+id);
-		return new ResponseEntity<PlatformInfo>(pService.GetSinglePlatform(id),HttpStatus.OK);
+	public ResponseEntity<PlatformInfo> GetPlatformById(@PathVariable Integer id){
+		System.out.println("GetPlatformById ==>"+id);
+		return new ResponseEntity<PlatformInfo>(platformService.GetSinglePlatform(id),HttpStatus.OK);
 	}
     
     
     @PostMapping("/platform")
-    public String addNewUser(@RequestBody PlatformInfo userInfo) {
-    	System.out.println("User");
-        return pService.addUser(userInfo);
+    public String addNewPlatform(@RequestBody PlatformInfo userInfo) {
+    	System.out.println("PlatformInfo => "+userInfo);
+        return platformService.addPlatform(userInfo);
     }
     
     @PostMapping("/authenticate")

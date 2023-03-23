@@ -14,23 +14,23 @@ import com.eoxys.iot_dashboard_app.repository.PlatformInfoRepository;
 public class PlatformService {
 	
 	@Autowired
-    private PlatformInfoRepository piRepository;
+    private PlatformInfoRepository platformInfoRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
     
     public Long PlatformCount() {
-		return piRepository.count();
+		return platformInfoRepository.count();
 	}
 	
 	
 	public List<PlatformInfo> AllPlatform(){
-		return piRepository.findAll();
+		return platformInfoRepository.findAll();
 	}
 	
 	
 	public PlatformInfo GetSinglePlatform(Integer id) {
-		Optional<PlatformInfo> users = piRepository.findById(id);
+		Optional<PlatformInfo> users = platformInfoRepository.findById(id);
 		if(users.isPresent()) {
 			return users.get();
 			
@@ -39,9 +39,9 @@ public class PlatformService {
 		throw new RuntimeException("Platform is not present for this id ==>"+id);
 	}
 	
-	public String addUser(PlatformInfo userInfo) {
+	public String addPlatform(PlatformInfo userInfo) {
         userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
-        piRepository.save(userInfo);
+        platformInfoRepository.save(userInfo);
         return "user added to system ";
     }
 

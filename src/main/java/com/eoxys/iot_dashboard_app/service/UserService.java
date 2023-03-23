@@ -20,20 +20,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class UserService {
 	
 	@Autowired
-	private UsersRepository uRepo;
+	private UsersRepository usersRepository;
 	
 	public Long UserCount() {
-		return uRepo.count();
+		return usersRepository.count();
 	}
 	
 	
 	public List<Users> AllUsers(){
-		return uRepo.findAll();
+		return usersRepository.findAll();
 	}
 	
 	
 	public Users GetSingleUser(Long id) {
-		Optional<Users> users = uRepo.findById(id);
+		Optional<Users> users = usersRepository.findById(id);
 		if(users.isPresent()) {
 			return users.get();
 			
@@ -44,28 +44,28 @@ public class UserService {
 	
 	
 	public Users SaveUser(Users users) {
-		return uRepo.save(users);
+		return usersRepository.save(users);
 	}
 	
 	//---------------------------------------------------------------------------------------------------------------------------------------
 	//---------------------------------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	private OrganizationRepository oRepo;
+	private OrganizationRepository organizationRepository;
 	
 	
 	public Long OrganizationCount() {
-		return oRepo.count();
+		return organizationRepository.count();
 	}
 	
 	
 	public List<Organization> AllOrganization(){
-		return oRepo.findAll();
+		return organizationRepository.findAll();
 	}
 	
 	
 	public Organization GetSingleOrganization(Long id) {
-		Optional<Organization> organization = oRepo.findById(id);
+		Optional<Organization> organization = organizationRepository.findById(id);
 		if(organization.isPresent()) {
 			return organization.get();
 		}
@@ -74,45 +74,11 @@ public class UserService {
 	
 	
 	public Organization SaveOrganization(Organization org) {
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
-		return oRepo.save(org);
+		return organizationRepository.save(org);
 	}
 	
 	
 	//---------------------------------------------------------------------------------------------------------------------------------------
 	//---------------------------------------------------------------------------------------------------------------------------------------
-	
-	@Autowired
-    private PlatformInfoRepository piRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    
-    public Long PlatformCount() {
-		return piRepository.count();
-	}
-	
-	
-	public List<PlatformInfo> AllPlatform(){
-		return piRepository.findAll();
-	}
-	
-	
-	public PlatformInfo GetSinglePlatform(Integer id) {
-		Optional<PlatformInfo> users = piRepository.findById(id);
-		if(users.isPresent()) {
-			return users.get();
-			
-		}
-		
-		throw new RuntimeException("Platform is not present for this id ==>"+id);
-	}
-	
-	public String addUser(PlatformInfo userInfo) {
-        userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
-        piRepository.save(userInfo);
-        return "user added to system ";
-    }
 
 }
