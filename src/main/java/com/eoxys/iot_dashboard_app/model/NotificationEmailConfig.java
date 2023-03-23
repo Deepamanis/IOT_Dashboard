@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "email_config")
+@Table(name = "tbl_email_config")
 public class NotificationEmailConfig {
 	
 	private Long email_config_id;

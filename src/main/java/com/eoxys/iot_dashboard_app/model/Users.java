@@ -9,7 +9,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "users")
+@Table(name = "tbl_users")
 public class Users {
 
 	private Long user_id;

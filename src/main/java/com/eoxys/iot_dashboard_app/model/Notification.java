@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "notification")
+@Table(name = "tbl_notification")
 public class Notification {
 	
 	

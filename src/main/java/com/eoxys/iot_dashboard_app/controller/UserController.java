@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.eoxys.iot_dashboard_app.model.Organization;
-import com.eoxys.iot_dashboard_app.model.Users;
 import com.eoxys.iot_dashboard_app.service.UserService;
 
+@PreAuthorize("#oauth2.isOAuth()")
 @RestController
 public class UserController {
 	

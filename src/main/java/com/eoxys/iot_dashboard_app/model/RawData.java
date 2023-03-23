@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "raw_data")
+@Table(name = "tbl_raw_data")
 public class RawData {
 	
 	private Long raw_data_id;

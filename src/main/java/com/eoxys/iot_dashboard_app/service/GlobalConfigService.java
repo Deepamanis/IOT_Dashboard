@@ -26,6 +26,9 @@ import com.eoxys.iot_dashboard_app.repository.UserProfilesRepository;
 @Service
 public class GlobalConfigService {
 	
+	
+	//DEVICE-CATEGORY
+	
 	@Autowired
 	private DeviceCategoryRepository devicecategoryrepository;
 	
@@ -57,6 +60,8 @@ public class GlobalConfigService {
 	//---------------------------------------------------------------------------------------------------------------------------------------
 	
 	
+	//DEVICE-DATA-PROFILE
+	
 	@Autowired
 	private DeviceDataProfileRepository devicedataprofilerepository;
 	
@@ -87,6 +92,10 @@ public class GlobalConfigService {
 	
 	//---------------------------------------------------------------------------------------------------------------------------------------
 	//---------------------------------------------------------------------------------------------------------------------------------------
+	
+	
+	//DEVICE-PROFILE
+	
 	
 	@Autowired
 	private DeviceProfileRepository deviceprofilerepository;
@@ -121,6 +130,10 @@ public class GlobalConfigService {
 	//---------------------------------------------------------------------------------------------------------------------------------------
 	//---------------------------------------------------------------------------------------------------------------------------------------
 	
+	
+	//ALARM-RULE
+	
+	
 	@Autowired
 	private AlarmRuleRepository alarmrulerepository;
 	
@@ -151,6 +164,8 @@ public class GlobalConfigService {
 	//---------------------------------------------------------------------------------------------------------------------------------------
 	//---------------------------------------------------------------------------------------------------------------------------------------
 	
+	
+	//ORGANIZATION-PROFILE
 	
 	
 	@Autowired
@@ -184,6 +199,10 @@ public class GlobalConfigService {
 	//---------------------------------------------------------------------------------------------------------------------------------------
 	//---------------------------------------------------------------------------------------------------------------------------------------
 	
+	
+	//USER-PROFILE
+	
+	
 	@Autowired
 	private UserProfilesRepository userprofilesrepository;
 	
@@ -216,6 +235,8 @@ public class GlobalConfigService {
 	//---------------------------------------------------------------------------------------------------------------------------------------
 	
 	
+	//NOTIFICATION-EMAIL-CONFIG
+	
 	
 	@Autowired
 	private NotificationEmailConfigRepository notificationemailconfigrepository;
@@ -247,6 +268,7 @@ public class GlobalConfigService {
 	//---------------------------------------------------------------------------------------------------------------------------------------
 	//---------------------------------------------------------------------------------------------------------------------------------------
 	
+	//NOTIFICATION-SMS-CONFIG
 	
 	
 	@Autowired

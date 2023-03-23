@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "device_profile")
+@Table(name = "tbl_device_profile")
 public class DeviceProfile {
 	
 	private Long device_profile_id;

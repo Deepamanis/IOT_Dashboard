@@ -17,7 +17,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "organization")
+@Table(name = "tbl_organization")
 public class Organization {
 	
 	private Long organization_id;

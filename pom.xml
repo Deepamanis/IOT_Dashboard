@@ -79,6 +79,16 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.eoxys.lib.utils</groupId>
+			<artifactId>common</artifactId>
+			<version>0.0.6</version>
+		</dependency>
+		<dependency>
+			<groupId>com.eoxys.lib.sso</groupId>
+			<artifactId>sso-client</artifactId>
+			<version>0.0.5</version>
+		</dependency>
 	</dependencies>
 
 	<build>

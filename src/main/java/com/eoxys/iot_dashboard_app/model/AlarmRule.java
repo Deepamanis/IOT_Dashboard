@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "global_alarm_rule")
+@Table(name = "tbl_alarm_rule")
 public class AlarmRule {
 	
 	

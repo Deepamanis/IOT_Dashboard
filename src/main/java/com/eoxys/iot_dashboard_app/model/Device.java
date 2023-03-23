@@ -12,7 +12,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "device")
+@Table(name = "tbl_device")
 public class Device {
 	
 	private Long device_id;

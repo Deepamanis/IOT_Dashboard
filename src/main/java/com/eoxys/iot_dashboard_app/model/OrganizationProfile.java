@@ -13,7 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "organization_profile")
+@Table(name = "tbl_organization_profile")
 public class OrganizationProfile {
 	
 	private Long organization_profile_id;

@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "alarm_even_list")
+@Table(name = "tbl_alarm_even_list")
 public class AlarmEventList {
 	
 	private Long alarm_even_list_id;

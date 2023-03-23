@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "device_category")
+@Table(name = "tbl_device_category")
 public class DeviceCategory {
 	
 	private Long device_category_id;
